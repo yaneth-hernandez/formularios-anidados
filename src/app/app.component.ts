@@ -39,7 +39,7 @@ export class AppComponent implements OnInit {
       ],
       'Valparaiso': ['Viña del Mar', 'Quilpué', 'Concón', 'Quillota'],
     },
-   ' Brasil': {
+    ' Brasil': {
       'São Paulo': [
         'São Paulo Centro',
         'Guarulhos',
@@ -56,6 +56,8 @@ export class AppComponent implements OnInit {
       ],
     },
   };
+
+  pasoActual: number = 1;
 
   constructor(private fb: FormBuilder) {
     this.formulario = this.fb.group({
@@ -90,7 +92,19 @@ export class AppComponent implements OnInit {
     const paisSeleccionado = this.formulario.value.pais;
     const estadoSeleccionado = this.formulario.value.estado;
 
-    return this.ciudades[paisSeleccionado]?.[estadoSeleccionado] || []
+    return this.ciudades[paisSeleccionado]?.[estadoSeleccionado] || [];
+  }
+
+  avanzar() {
+    if(this.pasoActual < 3){
+      this.pasoActual ++
+    }
+  }
+
+  retroceder() {
+    if(this.pasoActual > 1){
+      this.pasoActual --
+    }
   }
 
   enviarFormulario() {

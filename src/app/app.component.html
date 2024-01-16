@@ -8,13 +8,16 @@
   <div>
     <label>Estado</label>
     <select name="" id="estado" formControlName="estado">
-      <option *ngFor="let estado of estados" [value]="estado">{{estado}}</option>
+      <option *ngFor="let estado of obtenerEstadosPorPais(formulario.value.pais)" [value]="estado">{{estado}}</option>
     </select>
   </div>
   <div>
     <label>Ciudad</label>
-    <select name="" id="ciudad" formControlName="estado">
-      <option *ngFor="let ciudad of ciudades" [value]="ciudad">{{ciudad}}</option>
+    <select name="" id="ciudad" formControlName="ciudad">
+      <option *ngFor="let ciudad of obtenerCiudadesPorEstado()" [value]="ciudad">{{ciudad}}</option>
     </select>
+  </div>
+  <div>
+    <button type="button" (click)="enviarFormulario()">Enviar</button>
   </div>
 </form>

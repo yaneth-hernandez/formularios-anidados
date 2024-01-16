@@ -16,11 +16,28 @@ export class AppComponent implements OnInit {
 
   formulario!: FormGroup;
 
-  paises: string[] = ['Pais1','Pais2', 'Pais3'];
+  paises: string[] = ['Colombia', 'Chile', 'Brasil'];
 
-  estados: string[] = [];
+  estados: Record<string,string[]> = {
+    'Colombia': ['Cundinamarca', 'Antioquia'],
+    'Chile':['Santiago','Valparaiso'],
+    'Brasil':['São Paulo', 'Rio de Janeiro']
+  };
 
-  ciudades: string[] = [];
+  ciudades: Record<string, Record<string,string[]>>  = {
+    'Colombia':{
+      'Cundinamarca':['Bogotá', 'Soacha', 'Chía', 'Funza'],
+      'Antioquia':['Medellin','Rio Negro', 'Bello'],
+    },
+    'Chile':{
+      'Santiago':['Santiago Centro', 'Providencia', 'Las Condes', 'Ñuñoa', 'La Florida'],
+      'Valparaiso':[ 'Viña del Mar', 'Quilpué', 'Concón', 'Quillota']
+    },
+    'Brasil': {
+      'São Paulo': ['São Paulo Centro', 'Guarulhos', 'Santo André', 'São Bernardo', 'Osasco'],
+      'Rio de Janeiro': ['Rio de Janeiro Centro', 'Niterói', 'São Gonçalo', 'Duque de Caxias', 'Nova Iguaçu']
+    }
+  };
 
   constructor(private fb: FormBuilder) {
     this.formulario = this.fb.group({
@@ -43,9 +60,6 @@ export class AppComponent implements OnInit {
     });
   }
 
-
-  //gestion de pasos: gestion de como loa usuarios ingresan los datos
-
   obtenerEstadosPorPais(pais:string):string[]{
     return [`Estado1 de: ${pais}`,`Estado2 de: ${pais}`,`Estado3 de: ${pais}`]
   }
@@ -58,3 +72,4 @@ export class AppComponent implements OnInit {
     console.log('Formulario enviado: ', this.formulario.value)
   }
 }
+  //gestion de pasos: gestion de como los usuarios ingresan los datos

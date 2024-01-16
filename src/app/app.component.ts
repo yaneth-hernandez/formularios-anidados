@@ -39,7 +39,7 @@ export class AppComponent implements OnInit {
       ],
       'Valparaiso': ['Viña del Mar', 'Quilpué', 'Concón', 'Quillota'],
     },
-    ' Brasil': {
+    'Brasil': {
       'São Paulo': [
         'São Paulo Centro',
         'Guarulhos',

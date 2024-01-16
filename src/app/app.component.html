@@ -1,4 +1,4 @@
-<form [formGroup]="formulario">
+<form [formGroup]="formulario" (ngSubmit)="enviarFormulario()">
   <div>
     <label>País</label>
     <select name="" id="pais" formControlName="pais">
@@ -8,13 +8,14 @@
   <div>
     <label>Estado</label>
     <select name="" id="estado" formControlName="estado">
-      <option *ngFor="let estado of estados" [value]="estado">{{estado}}</option>
+      <option *ngFor="let estado of estados[paisSeleccionado]" [value]="estado">{{estado}}</option>
     </select>
   </div>
   <div>
     <label>Ciudad</label>
-    <select name="" id="ciudad" formControlName="estado">
-      <option *ngFor="let ciudad of ciudades" [value]="ciudad">{{ciudad}}</option>
+    <select name="" id="ciudad" formControlName="ciudad">
+      <option *ngFor="let ciudad of ciudades[paisSeleccionado][estadoSeleccionado]" [value]="ciudad">{{ciudad}}</option>
     </select>
   </div>
+  <button>Submit</button>
 </form>

@@ -1,23 +1,29 @@
 <form [formGroup]="formulario">
-  <div>
+  <div *ngIf="pasoActual === 1">
     <label>País</label>
     <select name="" id="pais" formControlName="pais">
       <option *ngFor="let pais of paises" [value]="pais">{{pais}}</option>
     </select>
+    <button type="button" (click)="avanzar()">Siguiente</button>
+
   </div>
-  <div>
+  <div *ngIf="pasoActual === 2">
     <label>Estado</label>
     <select name="" id="estado" formControlName="estado">
       <option *ngFor="let estado of obtenerEstadosPorPais(formulario.value.pais)" [value]="estado">{{estado}}</option>
     </select>
+    <button type="button" (click)="avanzar()">Siguiente</button>
+    <button type="button" (click)="retroceder()">Retroceder</button>
   </div>
-  <div>
+  <div *ngIf="pasoActual === 3">
     <label>Ciudad</label>
     <select name="" id="ciudad" formControlName="ciudad">
       <option *ngFor="let ciudad of obtenerCiudadesPorEstado()" [value]="ciudad">{{ciudad}}</option>
     </select>
-  </div>
-  <div>
-    <button type="button" (click)="enviarFormulario()">Enviar</button>
+    <button type="button" (click)="avanzar()">Siguiente</button>
+    <button type="button" (click)="retroceder()">Retroceder</button>
+    <div>
+      <button type="button" (click)="enviarFormulario()">Enviar</button>
+    </div>
   </div>
 </form>

@@ -19,27 +19,27 @@ export class AppComponent implements OnInit {
   paises: string[] = ['Colombia', 'Chile', 'Brasil'];
 
   estados: Record<string, string[]> = {
-    'Colombia': ['Cundinamarca', 'Antioquia'],
-    'Chile': ['Santiago', 'Valparaiso'],
-    'Brasil': ['São Paulo', 'Rio de Janeiro'],
+    Colombia: ['Cundinamarca', 'Antioquia'],
+    Chile: ['Santiago', 'Valparaiso'],
+    Brasil: ['São Paulo', 'Rio de Janeiro'],
   };
 
   ciudades: Record<string, Record<string, string[]>> = {
-    'Colombia': {
-      'Cundinamarca': ['Bogotá', 'Soacha', 'Chía', 'Funza'],
-      'Antioquia': ['Medellin', 'Rio Negro', 'Bello'],
+    Colombia: {
+      Cundinamarca: ['Bogotá', 'Soacha', 'Chía', 'Funza'],
+      Antioquia: ['Medellin', 'Rio Negro', 'Bello'],
     },
-    'Chile': {
-      'Santiago': [
+    Chile: {
+      Santiago: [
         'Santiago Centro',
         'Providencia',
         'Las Condes',
         'Ñuñoa',
         'La Florida',
       ],
-      'Valparaiso': ['Viña del Mar', 'Quilpué', 'Concón', 'Quillota'],
+      Valparaiso: ['Viña del Mar', 'Quilpué', 'Concón', 'Quillota'],
     },
-   ' Brasil': {
+    ' Brasil': {
       'São Paulo': [
         'São Paulo Centro',
         'Guarulhos',
@@ -56,6 +56,8 @@ export class AppComponent implements OnInit {
       ],
     },
   };
+
+  pasoActual: number = 1;
 
   constructor(private fb: FormBuilder) {
     this.formulario = this.fb.group({
@@ -90,7 +92,19 @@ export class AppComponent implements OnInit {
     const paisSeleccionado = this.formulario.value.pais;
     const estadoSeleccionado = this.formulario.value.estado;
 
-    return this.ciudades[paisSeleccionado]?.[estadoSeleccionado] || []
+    return this.ciudades[paisSeleccionado]?.[estadoSeleccionado] || [];
+  }
+
+  avanzar() {
+    if(this.pasoActual < 3){
+      this.pasoActual ++
+    }
+  }
+
+  retroceder() {
+    if(this.pasoActual > 1){
+      this.pasoActual --
+    }
   }
 
   enviarFormulario() {
